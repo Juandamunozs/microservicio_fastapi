@@ -1,0 +1,21 @@
+Ruta para activar entorno
+~/Desktop/Desarrollo/fast_api/app
+python -m  source venv/Scripts/activate
+(venv) 
+
+Ruta para activar el servidor 
+/JC_Backend/app (main)
+python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+Ruta para crear el entorno
+/JC_Backend(main)
+python -m venv venv
+
+Enlace donde abre la API en swagger
+http://127.0.0.1:8000/docs
+
+Instalar librerias
+python -m pip install bcrypt
+
+python -m pip freeze > requirements.txt #crear
+python -m pip install -r requirements.txt #instalar
