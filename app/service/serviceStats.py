@@ -78,12 +78,3 @@ def delete_stats_service(db: Session, stats_id: int):
     db.commit()
 
     return True
-
-# Servicio opcional para validación (puedes expandir lógica aquí)
-def update_stats_service_validation(db: Session, stats_id: int):
-    stats = db.query(Stats).filter(Stats.id  == stats_id).first()
-    
-    if not stats:
-        raise NotFoundError("Stats no encontrada")
-
-    return stats

@@ -143,3 +143,5 @@ __pycache__/
 
 venv/
 app/venv/
+app/env/.env
+.env

@@ -1,14 +1,26 @@
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.pool import NullPool
 from env.env import database_url
 
-engine = create_engine(database_url, connect_args={"check_same_thread": False})
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+# Configurar la conexión a la base de datos
+engine = create_engine(
+    database_url,
+    poolclass=NullPool,   # evita conflictos con pgbouncer
+    pool_pre_ping=True    # evita conexiones muertas
+)
 
+# Crear una sesión local
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine
+)
+
+# Crear la clase base para los modelos
 Base = declarative_base()
 
-# Función para obtener la sesión de base de datos en los controladores
+# Dependency para FastAPI
 def conection_db():
     db = SessionLocal()
     try:
@@ -16,6 +28,6 @@ def conection_db():
     finally:
         db.close()
 
-# Crear las tablas en la base de datos
+# Crear tablas
 def init_db():
     Base.metadata.create_all(bind=engine)

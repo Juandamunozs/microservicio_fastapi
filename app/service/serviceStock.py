@@ -78,12 +78,3 @@ def delete_stock_service(db: Session, stock_id: int):
     db.commit()
 
     return True
-
-# Servicio opcional para validación (puedes expandir lógica aquí)
-def update_stock_service_validation(db: Session, stock_id: int):
-    stock = db.query(Stock).filter(Stock.product_id == stock_id).first()
-    
-    if not stock:
-        raise NotFoundError("Stock no encontrado")
-
-    return stock

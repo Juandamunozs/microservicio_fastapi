@@ -1,21 +1,22 @@
-Ruta para activar entorno
-~/Desktop/Desarrollo/fast_api/app
+Ruta para crear y activar entorno (.env tambien junto al venv y app)
+~/Desktop/Desarrollo/microservicio_fastapi
+python -m venv venv
 python -m  source venv/Scripts/activate
 (venv) 
 
 Ruta para activar el servidor 
-/JC_Backend/app (main)
+~/Desktop/Desarrollo/microservicio_fastapi/app
 python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
-Ruta para crear el entorno
-/JC_Backend(main)
-python -m venv venv
-
-Enlace donde abre la API en swagger
+# Enlace donde abre la API en swagger
 http://127.0.0.1:8000/docs
 
-Instalar librerias
-python -m pip install bcrypt
+# Instalar librerias
+python -m pip install psycopg2
 
+# Crear archivo con versiones y librerias
 python -m pip freeze > requirements.txt #crear
 python -m pip install -r requirements.txt #instalar
+
+# Servicio nube db
+https://supabase.com/dashboard/project/qdodzavruyvqrnfvpqup
